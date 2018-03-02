@@ -62,7 +62,11 @@ export default props => {
             accessor: 'nuSalt' // String-based value accessors!
           }, {
             Header: 'nuCiclo',
-            accessor: 'nuCiclo'            
+            accessor: 'nuCiclo',
+            PivotValue: ({ value }) =>
+                    <span style={{ color: "darkred" }}>
+                      {value}
+                    </span>          
           }, {
             accessor: 'dsSeveridade', // Required because our accessor is not a string
             Header: 'dsSeveridade'
@@ -81,6 +85,7 @@ export default props => {
           },{
             accessor: 'nuCliente', // Required because our accessor is not a string
             Header: 'nuCliente'
+            
           }
         ]
 
@@ -89,7 +94,7 @@ export default props => {
             return <ReactTable data={listFiltred}  columns={columns} className="-striped -highlight"/> 
         }
 
-        return <ReactTable data={data}  columns={columns} className="-striped -highlight" /> 
+        return <ReactTable data={data}  columns={columns} className="-striped -highlight" filterable /> 
 
     }
 
