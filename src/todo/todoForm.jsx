@@ -35,7 +35,7 @@ export default props => {
     return(
         <div role='form' className='todoForm'>
 
-        <Grid cols='12 3 4'>
+        <Grid cols='12 3 2'>
         <Dropdown options={options}  
             placeholder="Mes"
             onChange={ props.handleChangeMonth }
@@ -65,13 +65,23 @@ export default props => {
         </Grid>
 
         <Grid cols='12 3 1'>
-            <input
-            name="checked"
-            type="checkbox"
-            //checked={props.checked}
-            onChange={props.handleChangeChecked}
-            />
             <label>encerradas</label>
+            <input
+                name="checked"
+                type="checkbox"
+                //checked={props.checked}
+                onChange={props.handleChangeChecked}
+            />            
+        </Grid>
+
+        <Grid cols='12 3 1'>
+            <label>HML</label>
+            <input
+                name="checkedHML"
+                type="checkbox"
+                //checked={props.checked}
+                onChange={props.handleChangeCheckedHML}
+            />            
         </Grid>
 
         <Grid cols='12 3 1'>

@@ -13,7 +13,7 @@ export default class Todo extends Component {
     
     constructor(props){
         super(props)
-        this.state = { month: '', showSubmit: false, court: '', system: '', checked: false , list: [], sist: [] }
+        this.state = { month: '', showSubmit: false, court: '', system: '', checked: false, checkedHML: false , list: [], sist: [] }
 
         this.handleChangeMonth = this.handleChangeMonth.bind(this)
         this.handleChangedtEnd = this.handleChangedtEnd.bind(this)
@@ -68,6 +68,15 @@ export default class Todo extends Component {
         }
         
     }
+
+    handleChangeCheckedHML(e) {
+        if(this.state.checked == 'on'){
+            this.setState({...this.state, checkedHML: false})
+        } else {
+            this.setState({...this.state, checkedHML: e.target.value})
+        }
+        
+    }
     
     handleChangeSystem(e) {
         this.setState({...this.state, system: e.target.value})
@@ -87,6 +96,7 @@ export default class Todo extends Component {
                     sist = {this.state.sist}
                     handleChangeSystem={this.handleChangeSystem}
                     handleChangeChecked={this.handleChangeChecked}
+                    handleChangeCheckedHML={this.handleChangeCheckedHML} 
                     handleChangeCourt={this.handleChangeCourt}
                     handleChangeMonth={this.handleChangeMonth}
                     handleChangedtEnd={this.handleChangedtEnd}/>

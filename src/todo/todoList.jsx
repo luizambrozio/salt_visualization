@@ -8,6 +8,11 @@ import Grid from '../template/grid'
 
 export default props => {
 
+
+    const applyFilter = (list) => {
+        
+    }
+
     const filterRows = (list) => {
 
        // let listFiltred =1
@@ -18,8 +23,6 @@ export default props => {
     }
 
     const filterRowsHML = (list) => {
-
-        // let listFiltred =1
  
          return list.filter(function(element) {
              return  element.nuCliente != 'HOMOLOGAÇÃO';
