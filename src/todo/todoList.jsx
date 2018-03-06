@@ -9,65 +9,47 @@ import Grid from '../template/grid'
 export default props => {
 
 
-    const applyFilter = (list) => {
+    const applyFilter = () => {
+        const list2 =  props.list.Result || []
         
+        var listFiltred = ''
+
+        if(props.checkedHML == 'on' & props.checked == 'on'){
+            console.log('checkedHML e checked ')
+            listFiltred = filterRowsHML(list2)
+            listFiltred = filterRows(listFiltred)
+            return listFiltred
+        }
+
+        if(props.checked == 'on'){
+            listFiltred = filterRows(list2)
+            console.log('checked')
+            return listFiltred
+        }
+
+        if(props.checkedHML == 'on'){
+            listFiltred = filterRowsHML(list2)
+            console.log('checkedHML')
+            return listFiltred
+        }
+        
+        return list2
     }
 
     const filterRows = (list) => {
-
-       // let listFiltred =1
-
         return list.filter(function(element) {
             return  element.dsSituacao != 'Encerrado';
         });
+        
     }
 
     const filterRowsHML = (list) => {
- 
          return list.filter(function(element) {
              return  element.nuCliente != 'HOMOLOGAÇÃO';
          });
      }
 
-    const renderRows = () => {
-        
-
-        const list2 =  props.list.Result || []
-
-        if(props.checked == 'on'){
-            var listFiltred = filterRows(list2)
-
-            return listFiltred.map(SALTS => (
-                <tr key={SALTS.nuSalt}>
-                    <td>{SALTS.nuSalt}</td>
-                    <td>{SALTS.nuCiclo}</td>
-                    <td>{SALTS.dsSeveridade}</td>
-                    <td>{SALTS.dtRegistro}</td>
-                    <td>{SALTS.dsSituacao}</td>
-                    <td>{SALTS.dtAceito}</td>
-                    <Rows getColor={SALTS.dtPrevisto} >{SALTS.dtPrevisto}</Rows>
-                    <td>{SALTS.nuCliente}</td>
-                </tr>
-            ))
-        }
-                
-        return list2.map(SALTS => (
-            <tr key={SALTS.nuSalt}>
-                <td>{SALTS.nuSalt}</td>ok
-                <td>{SALTS.nuCiclo}</td>ok
-                <td>{SALTS.dsSeveridade}</td>ok
-                <td>{SALTS.dtRegistro}</td>ok
-                <td>{SALTS.dsSituacao}</td>ok
-                <td>{SALTS.dtAceito}</td>
-                <Rows getColor={SALTS.dtPrevisto} >{SALTS.dtPrevisto}</Rows>
-                <td>{SALTS.nuCliente}</td>
-            </tr>
-        ))
-    }
-
     const rederTable = () => {
-
-        const data =  props.list.Result || []
 
         const columns = [{
             Header: 'nuSalt',
@@ -101,12 +83,9 @@ export default props => {
           }
         ]
 
-        if(props.checked == 'on'){
-            var listFiltred = filterRows(data)
-            return <ReactTable data={listFiltred}  columns={columns} className="-striped -highlight" filterable/> 
-        }
+        //applyFilter()
 
-        return <ReactTable data={data}  columns={columns} className="-striped -highlight" filterable /> 
+        return <ReactTable data={applyFilter()}  columns={columns} className="-striped -highlight" filterable /> 
 
     }
 

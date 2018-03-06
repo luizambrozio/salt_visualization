@@ -20,6 +20,7 @@ export default class Todo extends Component {
         this.handleChangeCourt = this.handleChangeCourt.bind(this)
         this.handleChangeSystem = this.handleChangeSystem.bind(this)
         this.handleChangeChecked = this.handleChangeChecked.bind(this)
+        this.handleChangeCheckedHML = this.handleChangeCheckedHML.bind(this)
         this.refresh = this.refresh.bind(this)
         this.clear = this.clear.bind(this)
         
@@ -70,7 +71,7 @@ export default class Todo extends Component {
     }
 
     handleChangeCheckedHML(e) {
-        if(this.state.checked == 'on'){
+        if(this.state.checkedHML == 'on'){
             this.setState({...this.state, checkedHML: false})
         } else {
             this.setState({...this.state, checkedHML: e.target.value})
@@ -93,6 +94,7 @@ export default class Todo extends Component {
                     refresh={this.refresh}
                     clear={this.clear}
                     checked = {this.state.checked}
+                    checkedHML = {this.state.checkedHML}
                     sist = {this.state.sist}
                     handleChangeSystem={this.handleChangeSystem}
                     handleChangeChecked={this.handleChangeChecked}
@@ -104,6 +106,7 @@ export default class Todo extends Component {
                 <TodoList
                     list = {this.state.list}
                     checked = {this.state.checked}
+                    checkedHML = {this.state.checkedHML}
                     />
             </div>
         )

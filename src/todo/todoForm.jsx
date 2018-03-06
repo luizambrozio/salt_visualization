@@ -56,7 +56,7 @@ export default props => {
                 value={props.system}/>
         </Grid>
 
-        <Grid cols='12 3 2'>
+        <Grid cols='12 3 3'>
         <Dropdown options={sis}  
             placeholder="sistema"
             //onChange={ props.handleChangeSystem }
@@ -64,24 +64,19 @@ export default props => {
             />
         </Grid>
 
-        <Grid cols='12 3 1'>
-            <label>encerradas</label>
+        <Grid cols='12 3 2'>
             <input
                 name="checked"
                 type="checkbox"
                 //checked={props.checked}
                 onChange={props.handleChangeChecked}
-            />            
-        </Grid>
-
-        <Grid cols='12 3 1'>
-            <label>HML</label>
+            /> Encerradas <br/>           
             <input
                 name="checkedHML"
                 type="checkbox"
                 //checked={props.checked}
                 onChange={props.handleChangeCheckedHML}
-            />            
+            /> Homologação <br/>         
         </Grid>
 
         <Grid cols='12 3 1'>
