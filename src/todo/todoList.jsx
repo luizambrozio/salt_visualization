@@ -17,6 +17,15 @@ export default props => {
         });
     }
 
+    const filterRowsHML = (list) => {
+
+        // let listFiltred =1
+ 
+         return list.filter(function(element) {
+             return  element.nuCliente != 'HOMOLOGAÇÃO';
+         });
+     }
+
     const renderRows = () => {
         
 
@@ -91,7 +100,7 @@ export default props => {
 
         if(props.checked == 'on'){
             var listFiltred = filterRows(data)
-            return <ReactTable data={listFiltred}  columns={columns} className="-striped -highlight"/> 
+            return <ReactTable data={listFiltred}  columns={columns} className="-striped -highlight" filterable/> 
         }
 
         return <ReactTable data={data}  columns={columns} className="-striped -highlight" filterable /> 

@@ -5,14 +5,15 @@ import PageHeader from '../template/pagaHeader'
 import TodoForm from './todoForm'
 import TodoList from './todoList'
 
-const URL = 'http://172.23.227.141:3001/Softplan/TSACMethods/SALT/'
+const URL = 'http://172.23.227.114:3001/Softplan/TSACMethods/SALT/'
+const URLSIS = 'http://172.23.227.114:3001/Softplan/TSACMethods/sistema'
 
 
 export default class Todo extends Component {
     
     constructor(props){
         super(props)
-        this.state = { month: '', showSubmit: false, court: '', system: '', checked: false , list: [] }
+        this.state = { month: '', showSubmit: false, court: '', system: '', checked: false , list: [], sist: [] }
 
         this.handleChangeMonth = this.handleChangeMonth.bind(this)
         this.handleChangedtEnd = this.handleChangedtEnd.bind(this)
@@ -22,6 +23,11 @@ export default class Todo extends Component {
         this.refresh = this.refresh.bind(this)
         this.clear = this.clear.bind(this)
         
+        
+    }
+
+    componentWillMount(){
+        this.getClients()
     }
 
     refresh(){
@@ -31,7 +37,14 @@ export default class Todo extends Component {
 
     clear(){
         this.setState({...this.state, month: '', showSubmit: false, court: '', system: '', list: [] })
-     }
+    }
+
+    
+    getClients(){
+                        
+        axios.get(URLSIS)
+        .then(resp => this.setState({...this.state , sist : resp.data.Result}))
+    }
 
 
     handleChangeMonth(e) {
@@ -66,11 +79,12 @@ export default class Todo extends Component {
                 <PageHeader name='Salts' small='TJ'></PageHeader>
                 <TodoForm 
                     month={ this.state.month }
-                    //court={this.state.court}
+                    court={this.state.court}
                     system={this.state.system}
                     refresh={this.refresh}
                     clear={this.clear}
                     checked = {this.state.checked}
+                    sist = {this.state.sist}
                     handleChangeSystem={this.handleChangeSystem}
                     handleChangeChecked={this.handleChangeChecked}
                     handleChangeCourt={this.handleChangeCourt}

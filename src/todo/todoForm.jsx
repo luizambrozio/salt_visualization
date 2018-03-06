@@ -23,6 +23,14 @@ export default props => {
        {value : 11, label : 'Novembro'},
        {value : 12, label : 'Dezembro'},
       ]
+
+
+      const sis = props.sist.map(siste => {
+        return {value: siste.cdSistema, label: siste.sgSistema}
+      })
+
+      
+                
       
     return(
         <div role='form' className='todoForm'>
@@ -31,7 +39,6 @@ export default props => {
         <Dropdown options={options}  
             placeholder="Mes"
             onChange={ props.handleChangeMonth }
-            //value={ props.month }
             />
         </Grid>
 
@@ -42,11 +49,19 @@ export default props => {
                 value={props.month}/>
         </Grid>
 
-        <Grid cols='12 3 4'>
+        <Grid cols='12 3 2'>
             <input id='system' className='form-control'
                 placeholder='Sistema' 
                 onChange={ props.handleChangeSystem }
                 value={props.system}/>
+        </Grid>
+
+        <Grid cols='12 3 2'>
+        <Dropdown options={sis}  
+            placeholder="sistema"
+            //onChange={ props.handleChangeSystem }
+            //value={ props.month }
+            />
         </Grid>
 
         <Grid cols='12 3 1'>
