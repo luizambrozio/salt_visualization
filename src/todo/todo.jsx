@@ -5,8 +5,8 @@ import PageHeader from '../template/pagaHeader'
 import TodoForm from './todoForm'
 import TodoList from './todoList'
 
-const URL = 'http://172.23.227.114:3001/Softplan/TSACMethods/SALT/'
-const URLSIS = 'http://172.23.227.114:3001/Softplan/TSACMethods/sistema'
+const URL = 'http://172.23.227.122:3001/Softplan/TSACMethods/SALT/'
+const URLSIS = 'http://172.23.227.122:3001/Softplan/TSACMethods/sistema'
 
 
 export default class Todo extends Component {
