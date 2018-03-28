@@ -14,49 +14,57 @@ export default props => {
         
         var listFiltred = ''
 
-        if(props.checkedHML == 'on' & props.checked == 'on' & props.checkedAF == 'on'){
+        if(props.checkedHML == 'false' & props.checked == 'false' & props.checkedAF == 'false'){
             console.log('checkedHML e checked e aceite final ')
             listFiltred = filterRowsHML(list2)
             listFiltred = filterRows(listFiltred)
             listFiltred = filterRowsAF(listFiltred)
+            listFiltred = filterRowsAP(listFiltred)
+            listFiltred = filterRowsCanc(listFiltred)
             return listFiltred
         }
 
-        if(props.checkedHML == 'on' & props.checked == 'on'){
+        if(props.checkedHML == 'false' & props.checked == 'false'){
             console.log('checkedHML e checked ')
             listFiltred = filterRowsHML(list2)
             listFiltred = filterRows(listFiltred)
+            listFiltred = filterRowsCanc(listFiltred)
             return listFiltred
         }
 
-        if(props.checkedHML == 'on' & props.checkedAF == 'on'){
+        if(props.checkedHML == 'false' & props.checkedAF == 'false'){
             console.log('checkedHML e checked ')
             listFiltred = filterRowsHML(list2)
             listFiltred = filterRowsAF(listFiltred)
+            listFiltred = filterRowsAP(listFiltred)
             return listFiltred
         }
 
-        if(props.checked == 'on' & props.checkedAF == 'on'){
+        if(props.checked == 'false' & props.checkedAF == 'false'){
             console.log('checkedHML e checked ')
             listFiltred = filterRows(list2)
             listFiltred = filterRowsAF(listFiltred)
+            listFiltred = filterRowsAP(listFiltred)
+            listFiltred = filterRowsCanc(listFiltred)
             return listFiltred
         }
 
 
-        if(props.checked == 'on'){
+        if(props.checked == 'false'){
             listFiltred = filterRows(list2)
+            listFiltred = filterRowsCanc(listFiltred)
             //console.log('checked')
             return listFiltred
         }
 
-        if(props.checkedAF == 'on'){
+        if(props.checkedAF == 'false'){
             listFiltred = filterRowsAF(list2)
+            listFiltred = filterRowsAP(listFiltred)
             console.log('checkedAF')
             return listFiltred
         }
 
-        if(props.checkedHML == 'on'){
+        if(props.checkedHML == 'false'){
             listFiltred = filterRowsHML(list2)
             console.log('checkedHML')
             return listFiltred
@@ -69,7 +77,12 @@ export default props => {
         return list.filter(function(element) {
             return  element.dsSituacao != 'Encerrado';
         });
-        
+    }
+
+    const filterRowsCanc = (list) => {
+        return list.filter(function(element) {
+            return  element.dsSituacao != 'Cancelado pelo cliente';
+        });
     }
 
     const filterRowsHML = (list) => {
@@ -81,6 +94,12 @@ export default props => {
      const filterRowsAF = (list) => {
         return list.filter(function(element) {
             return  element.dsSituacao != 'Aguardando aceite final';
+        });
+    }
+
+    const filterRowsAP = (list) => {
+        return list.filter(function(element) {
+            return  element.dsSituacao != 'Aguardando aceite parcial';
         });
     }
 

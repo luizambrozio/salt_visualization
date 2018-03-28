@@ -13,7 +13,7 @@ export default class Todo extends Component {
     
     constructor(props){
         super(props)
-        this.state = { month: '', showSubmit: false, court: '', system: '', checked: 'false', checkedHML: false , checkedAF: false, list: [], sist: [] }
+        this.state = { month: '', showSubmit: false, court: '', system: '', checked: 'false', checkedHML: 'false' , checkedAF: 'false', list: [], sist: [] }
 
         this.handleChangeMonth = this.handleChangeMonth.bind(this)
         this.handleChangedtEnd = this.handleChangedtEnd.bind(this)
@@ -65,27 +65,27 @@ export default class Todo extends Component {
     handleChangeChecked(e) {
             console.log(this.state.checked)
         if(this.state.checked == 'on'){
-            this.setState({...this.state, checked: 'off'})
+            this.setState({...this.state, checked: 'false'})
         } else {
-            this.setState({...this.state, checked: e.target.value})
+            this.setState({...this.state, checked: 'on'})
         }
         
     }
 
     handleChangeCheckedHML(e) {
         if(this.state.checkedHML == 'on'){
-            this.setState({...this.state, checkedHML: false})
+            this.setState({...this.state, checkedHML: 'false'})
         } else {
-            this.setState({...this.state, checkedHML: e.target.value})
+            this.setState({...this.state, checkedHML: 'on'})
         }
         
     }
 
     handleChangeCheckedAF(e) {
         if(this.state.checkedAF == 'on'){
-            this.setState({...this.state, checkedAF: false})
+            this.setState({...this.state, checkedAF: 'false'})
         } else {
-            this.setState({...this.state, checkedAF: e.target.value})
+            this.setState({...this.state, checkedAF: 'on'})
         }
         
     }
