@@ -14,6 +14,14 @@ export default props => {
         
         var listFiltred = ''
 
+        if(props.checkedHML == 'on' & props.checked == 'on' & props.checkedAF == 'on'){
+            console.log('checkedHML e checked e aceite final ')
+            listFiltred = filterRowsHML(list2)
+            listFiltred = filterRows(listFiltred)
+            listFiltred = filterRowsAF(listFiltred)
+            return listFiltred
+        }
+
         if(props.checkedHML == 'on' & props.checked == 'on'){
             console.log('checkedHML e checked ')
             listFiltred = filterRowsHML(list2)
@@ -21,9 +29,30 @@ export default props => {
             return listFiltred
         }
 
+        if(props.checkedHML == 'on' & props.checkedAF == 'on'){
+            console.log('checkedHML e checked ')
+            listFiltred = filterRowsHML(list2)
+            listFiltred = filterRowsAF(listFiltred)
+            return listFiltred
+        }
+
+        if(props.checked == 'on' & props.checkedAF == 'on'){
+            console.log('checkedHML e checked ')
+            listFiltred = filterRows(list2)
+            listFiltred = filterRowsAF(listFiltred)
+            return listFiltred
+        }
+
+
         if(props.checked == 'on'){
             listFiltred = filterRows(list2)
-            console.log('checked')
+            //console.log('checked')
+            return listFiltred
+        }
+
+        if(props.checkedAF == 'on'){
+            listFiltred = filterRowsAF(list2)
+            console.log('checkedAF')
             return listFiltred
         }
 
@@ -49,13 +78,19 @@ export default props => {
          });
      }
 
+     const filterRowsAF = (list) => {
+        return list.filter(function(element) {
+            return  element.dsSituacao != 'Aguardando aceite final';
+        });
+    }
+
     const rederTable = () => {
 
         const columns = [{
-            Header: 'nuSalt',
+            Header: 'Salt',
             accessor: 'nuSalt' // String-based value accessors!
           }, {
-            Header: 'nuCiclo',
+            Header: 'Ciclo',
             accessor: 'nuCiclo',
             PivotValue: ({ value }) =>
                     <span style={{ color: "darkred" }}>
@@ -63,22 +98,28 @@ export default props => {
                     </span>          
           }, {
             accessor: 'dsSeveridade', // Required because our accessor is not a string
-            Header: 'dsSeveridade'
+            Header: 'Severidade'
           },{
             accessor: 'dtRegistro', // Required because our accessor is not a string
-            Header: 'dtRegistro'
+            Header: 'Registro'
           },{
             accessor: 'dsSituacao', // Required because our accessor is not a string
-            Header: 'dsSituacao'
+            Header: 'Situacao'
           },{
             accessor: 'dtAceito', // Required because our accessor is not a string
-            Header: 'dtAceito'
+            Header: 'Aceito em'
           },{
             accessor: 'dtPrevisto', // Required because our accessor is not a string
-            Header: 'dtPrevisto'
+            Header: 'Data prevista'
+          },{
+            accessor: 'dtContrato', // Required because our accessor is not a string
+            Header: 'Data contrato'
+          },{
+            accessor: 'dtPrazoProd', // Required because our accessor is not a string
+            Header: 'Prazo produção'
           },{
             accessor: 'nuCliente', // Required because our accessor is not a string
-            Header: 'nuCliente'
+            Header: 'Nº cliente'
             
           }
         ]

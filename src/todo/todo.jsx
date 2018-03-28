@@ -13,7 +13,7 @@ export default class Todo extends Component {
     
     constructor(props){
         super(props)
-        this.state = { month: '', showSubmit: false, court: '', system: '', checked: false, checkedHML: false , list: [], sist: [] }
+        this.state = { month: '', showSubmit: false, court: '', system: '', checked: 'false', checkedHML: false , checkedAF: false, list: [], sist: [] }
 
         this.handleChangeMonth = this.handleChangeMonth.bind(this)
         this.handleChangedtEnd = this.handleChangedtEnd.bind(this)
@@ -21,6 +21,7 @@ export default class Todo extends Component {
         this.handleChangeSystem = this.handleChangeSystem.bind(this)
         this.handleChangeChecked = this.handleChangeChecked.bind(this)
         this.handleChangeCheckedHML = this.handleChangeCheckedHML.bind(this)
+        this.handleChangeCheckedAF = this.handleChangeCheckedAF.bind(this)
         this.refresh = this.refresh.bind(this)
         this.clear = this.clear.bind(this)
         
@@ -62,8 +63,9 @@ export default class Todo extends Component {
     }
 
     handleChangeChecked(e) {
+            console.log(this.state.checked)
         if(this.state.checked == 'on'){
-            this.setState({...this.state, checked: false})
+            this.setState({...this.state, checked: 'off'})
         } else {
             this.setState({...this.state, checked: e.target.value})
         }
@@ -75,6 +77,15 @@ export default class Todo extends Component {
             this.setState({...this.state, checkedHML: false})
         } else {
             this.setState({...this.state, checkedHML: e.target.value})
+        }
+        
+    }
+
+    handleChangeCheckedAF(e) {
+        if(this.state.checkedAF == 'on'){
+            this.setState({...this.state, checkedAF: false})
+        } else {
+            this.setState({...this.state, checkedAF: e.target.value})
         }
         
     }
@@ -99,6 +110,7 @@ export default class Todo extends Component {
                     handleChangeSystem={this.handleChangeSystem}
                     handleChangeChecked={this.handleChangeChecked}
                     handleChangeCheckedHML={this.handleChangeCheckedHML} 
+                    handleChangeCheckedAF={this.handleChangeCheckedAF}
                     handleChangeCourt={this.handleChangeCourt}
                     handleChangeMonth={this.handleChangeMonth}
                     handleChangedtEnd={this.handleChangedtEnd}/>
@@ -107,6 +119,7 @@ export default class Todo extends Component {
                     list = {this.state.list}
                     checked = {this.state.checked}
                     checkedHML = {this.state.checkedHML}
+                    checkedAF = {this.state.checkedAF}
                     />
             </div>
         )

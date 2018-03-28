@@ -42,7 +42,7 @@ export default props => {
             />
         </Grid>
 
-        <Grid cols='12 3 1'>
+        <Grid cols='12 3 2'>
             <input id='month' className='form-control'
                 placeholder='mes' 
                 onChange={ props.handleChangeMonth }
@@ -54,14 +54,6 @@ export default props => {
                 placeholder='Sistema' 
                 onChange={ props.handleChangeSystem }
                 value={props.system}/>
-        </Grid>
-
-        <Grid cols='12 3 3'>
-        <Dropdown options={sis}  
-            placeholder="sistema"
-            //onChange={ props.handleChangeSystem }
-            //value={ props.month }
-            />
         </Grid>
 
         <Grid cols='12 3 2'>
@@ -76,7 +68,16 @@ export default props => {
                 type="checkbox"
                 //checked={props.checked}
                 onChange={props.handleChangeCheckedHML}
-            /> Homologação <br/>         
+            /> Homologação <br/>
+        
+        </Grid>
+        <Grid cols='12 3 2'>
+        <input
+                name="checkedAC"
+                type="checkbox"
+                //checked={props.checked}
+                onChange={props.handleChangeCheckedAF}
+            /> Aceite final <br/>         
         </Grid>
 
         <Grid cols='12 3 1'>
