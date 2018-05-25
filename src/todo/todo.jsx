@@ -5,15 +5,15 @@ import PageHeader from '../template/pagaHeader'
 import TodoForm from './todoForm'
 import TodoList from './todoList'
 
-const URL = 'http://172.23.227.122:3001/Softplan/TSACMethods/SALT/'
-const URLSIS = 'http://172.23.227.122:3001/Softplan/TSACMethods/sistema'
+const URL = 'http://172.23.227.120:3001/Softplan/TSACMethods/SALT/'
+const URLSIS = 'http://172.23.227.120:3001/Softplan/TSACMethods/sistema'
 
 
 export default class Todo extends Component {
     
     constructor(props){
         super(props)
-        this.state = { month: '', showSubmit: false, court: '', system: '', checked: 'false', checkedHML: 'false' , checkedAF: 'false', list: [], sist: [] }
+        this.state = { month: '', showSubmit: false, court: '', system: '', checked: 'false', checkedHML: 'false' , checkedAF: 'false', list: [], sist: [], percetVenc : 0 }
 
         this.handleChangeMonth = this.handleChangeMonth.bind(this)
         this.handleChangedtEnd = this.handleChangedtEnd.bind(this)
@@ -34,7 +34,7 @@ export default class Todo extends Component {
 
     refresh(){
        axios.get(`${URL}${this.state.system}/${this.state.month}`)
-            .then(resp => this.setState({...this.state, list : resp.data}))
+            .then(resp => this.setState({...this.state, list : resp.data}))        
     }
 
     clear(){
@@ -42,10 +42,10 @@ export default class Todo extends Component {
     }
 
     
-    getClients(){
-                        
+    getClients(){                        
         axios.get(URLSIS)
         .then(resp => this.setState({...this.state , sist : resp.data.Result}))
+        
     }
 
 
@@ -93,6 +93,7 @@ export default class Todo extends Component {
     handleChangeSystem(e) {
         this.setState({...this.state, system: e.target.value})
     }
+
     
     render(){
         return (
@@ -113,7 +114,8 @@ export default class Todo extends Component {
                     handleChangeCheckedAF={this.handleChangeCheckedAF}
                     handleChangeCourt={this.handleChangeCourt}
                     handleChangeMonth={this.handleChangeMonth}
-                    handleChangedtEnd={this.handleChangedtEnd}/>
+                    handleChangedtEnd={this.handleChangedtEnd}
+                    list = {this.state.list}/>
                 
                 <TodoList
                     list = {this.state.list}

@@ -28,10 +28,13 @@ export default props => {
       const sis = props.sist.map(siste => {
         return {value: siste.cdSistema, label: siste.sgSistema}
       })
+     
+    const list = props.list.Result || []
 
-      
-                
-      
+      const listF = list.filter(element => {
+        return  element.nuCliente != 'HOMOLOGAÇÃO';
+    })
+            
     return(
         <div role='form' className='todoForm'>
 
@@ -42,9 +45,9 @@ export default props => {
             />
         </Grid>
 
-        <Grid cols='12 3 2'>
+        <Grid cols='12 3 1'>
             <input id='month' className='form-control'
-                placeholder='mes' 
+                placeholder='Mes' 
                 onChange={ props.handleChangeMonth }
                 value={props.month}/>
         </Grid>
@@ -56,28 +59,28 @@ export default props => {
                 value={props.system}/>
         </Grid>
 
-        <Grid cols='12 3 2'>
+        <Grid cols='12 3 1'>
             <input
                 name="checked"
                 type="checkbox"
                 //checked={props.checked}
                 onChange={props.handleChangeChecked}
-            /> Encerradas <br/>           
+            /> Enc <br/>           
             <input
                 name="checkedHML"
                 type="checkbox"
                 //checked={props.checked}
                 onChange={props.handleChangeCheckedHML}
-            /> Homologação <br/>
+            /> HML <br/>
         
         </Grid>
-        <Grid cols='12 3 2'>
+        <Grid cols='12 3 1'>
         <input
                 name="checkedAC"
                 type="checkbox"
                 //checked={props.checked}
                 onChange={props.handleChangeCheckedAF}
-            /> Aceite final <br/>         
+            /> A. final <br/>         
         </Grid>
 
         <Grid cols='12 3 1'>
@@ -88,6 +91,10 @@ export default props => {
         <Grid cols='12 3 1'>
             <Button className='btn-block' style='primary' icon='trash-o'
                 onClick={() => props.clear()}/>
+        </Grid>
+
+        <Grid cols='12 3 2'>
+            <h4>Vencidas {(listF.length)} %</h4>
         </Grid>
     </div>
     )    

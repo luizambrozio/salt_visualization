@@ -8,7 +8,6 @@ import Grid from '../template/grid'
 
 export default props => {
 
-
     const applyFilter = () => {
         const list2 =  props.list.Result || []
         
@@ -140,6 +139,27 @@ export default props => {
             accessor: 'nuCliente', // Required because our accessor is not a string
             Header: 'Nº cliente'
             
+          },{
+              
+        Header: 'Status',
+        accessor: 'status',
+        Cell: row => (
+          <span>
+            <span style={{
+              color: row.value === 'relationship' ? '#ff2e00'
+                : row.value === 'complicated' ? '#ffbf00'
+                : '#57d500',
+              transition: 'all .3s ease'
+            }}>
+              &#x25cf;
+            </span> {
+              row.value === 'relationship' ? 'In a relationship'
+              : row.value === 'complicated' ? `It's complicated`
+              : 'No Prazo'
+            }
+          </span>
+        )
+                 
           }
         ]
 
